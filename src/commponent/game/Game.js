@@ -4,17 +4,23 @@ import {useState} from "react";
 
 export default function Game (){
     const [allPlayers, setAllPlayers] = useState([]);
-    const players = (player1, player2) => {
-        if (!player1 || !player2) return
-        console.log(player1)
-        setAllPlayers("player1")
-        console.log(allPlayers)
+    const [isModalShow, setIsModalShow] = useState(true);
 
+    const players = (player1, player2, flag) => {
+        if (!player1 || !player2) return
+
+        setAllPlayers([player1, player2])
+        setIsModalShow(flag)
     }
+    console.log(allPlayers)
     return(
         <div>
-            <ModalWindow players={players}/>
-            <TicTacToe/>
+            {
+                isModalShow && <ModalWindow players={players}/>
+            }
+            {
+                !isModalShow && <TicTacToe players={allPlayers}/>
+            }
         </div>
     )
 }

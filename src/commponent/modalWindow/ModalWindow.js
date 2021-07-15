@@ -1,17 +1,15 @@
 import "./ModalWindow.css"
 import {useState} from "react";
-import TicTacToe from "../tic-tac-toe/TicTacToe";
 
 export default function ModalWindow({players}) {
-    const [player1, setPlayer1] = useState([]);
-    const [player2, setPlayer2] = useState();
+    const [player1, setPlayer1] = useState('');
+    const [player2, setPlayer2] = useState('');
+
     const formSubmit = (e) => {
         e.preventDefault()
-        if (!player1 || !player2) return
-        TicTacToe(player1, player2)
-        let close = document.querySelector('.modal');
-        close.style.display = 'none'
+        players(player1, player2, false)
     }
+
     return (
         <div className='modal'>
             <div className='modal__overlay'>
@@ -25,7 +23,6 @@ export default function ModalWindow({players}) {
                     </form>
                 </div>
             </div>
-
         </div>
     )
 }
